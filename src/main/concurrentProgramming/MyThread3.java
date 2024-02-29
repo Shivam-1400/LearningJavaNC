@@ -51,9 +51,9 @@ public class MyThread3 {
         t2.start();
 
         try {
-            Thread.sleep(1000);
+            Thread.sleep(200);
             t1.suspend();
-            System.out.println("thred "+ t1.name+" suspended");
+            System.out.println("thread "+ t1.name+" suspended");
             Thread.sleep(100);
             t1.resume();
             System.out.println("thread "+ t1.name+ " resumed");
@@ -61,7 +61,7 @@ public class MyThread3 {
 
             Thread.sleep(1000);
             t2.suspend();
-            System.out.println("thred "+ t2.name+" suspended");
+            System.out.println("thread "+ t2.name+" suspended");
             Thread.sleep(100);
             t2.resume();
             System.out.println("thread "+ t2.name+ " resumed");
