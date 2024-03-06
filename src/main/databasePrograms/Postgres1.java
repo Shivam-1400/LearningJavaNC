@@ -129,9 +129,40 @@ public class Postgres1 {
         }
 */
 
+        //count grouped data by group name ending character
+/*
+        String qry = "SELECT SUBSTRING(name, LENGTH(name)) AS last_char, COUNT(*) AS count FROM books GROUP BY SUBSTRING(name, LENGTH(name))";
+        PreparedStatement pst = con.prepareStatement(qry);
+        ResultSet rs = pst.executeQuery();
+        while (rs.next()){
+            System.out.println(rs.getInt("count")+" -> "+ rs.getString("last_char"));
+        }
+
+*/
+
+        //alter table, add new column  author in books
+/*
+        PreparedStatement pst= con.prepareStatement("Alter table books add column author varchar (10)");
+        pst.executeUpdate();
+*/
+
+        //update table books, set author = Awick where book-name end with A, and so on
+/*
+        PreparedStatement pst= con.prepareStatement("UPDATE books set author= ? where name like ?");
+        for(int i=0; i<26; i++){
+            String name= (char)('A'+ i)+ "wick";
+            pst.setString(1, name);
+            pst.setString(2, "%"+(char)('A'+ i));
+            pst.addBatch();
+        }
+        pst.executeBatch();
+        System.out.println("Author name updated");
+*/
 
 
 
+
+//        String qry= "DELETE FROM books where name like '%e'";
 
 
     }
