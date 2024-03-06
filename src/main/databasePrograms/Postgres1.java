@@ -163,7 +163,7 @@ public class Postgres1 {
 
 
 //        String qry= "DELETE FROM books where name like '%e'";
-
+//        String qry= "select count(*) as count, author, name, max(price) as price from books group by author, name;";
 
     }
     static void createTable(Connection con, String tableName, Map<String, String> mp) throws SQLException {
