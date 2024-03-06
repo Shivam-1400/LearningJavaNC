@@ -87,6 +87,7 @@ public class Postgres1 {
 
 
 
+
     }
     static void createTable(Connection con, String tableName, Map<String, String> mp) throws SQLException {
         String query= "Create table "+ tableName+" (";
