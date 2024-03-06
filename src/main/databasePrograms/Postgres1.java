@@ -1,9 +1,7 @@
 package main.databasePrograms;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-    import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
+import java.time.Period;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -41,9 +39,10 @@ public class Postgres1 {
         System.out.println(a);
 */
 
-        //insert 10 000 rows
-/*
-        PreparedStatement pst= con.prepareStatement("INSERT into goods values(?, ?)");
+//------------------------------------------------
+
+        //insert 10 000 rows in goods table
+/*        PreparedStatement pst= con.prepareStatement("INSERT into goods values(?, ?)");
         for(int i=0; i< 10000; i++){
             pst.setString(1, "good"+i);
             pst.setInt(2, 10*i);
@@ -54,15 +53,24 @@ public class Postgres1 {
         for(int a: res){
             System.out.print(a+", ");
         }
-        System.out.println();
+        System.out.println();*/
 
+        //read all rows form goods table
+/*
+        PreparedStatement pst= con.prepareStatement("SELECT * from goods");
+        ResultSet rs= pst.executeQuery();
+        System.out.println(rs);
+        while (rs.next()){
+            System.out.println(rs.getString("name")+" -> "+ rs.getInt("weight"));
+        }
 */
 
+//------------------------------------------------
 
-        //insert 100 000 row
+        //insert 100 000 row into table1
 /*
-        PreparedStatement pst= con.prepareStatement("INSERT INTO table1 VALUES(?, ?, ?)");
-        for(int i=2; i< 100000; i++){
+    PreparedStatement pst= con.prepareStatement("INSERT INTO table1 VALUES(?, ?, ?)");
+        for(int i=0; i< 100000; i++){
             pst.setInt(1, i);
             pst.setString(2, "User"+i);
             pst.setInt(3, (20+i));
@@ -72,17 +80,55 @@ public class Postgres1 {
         System.out.println(res+" rows added successfully");
 */
 
-        //insert 10 000 000 rows
+        //read rows from table1 whose age is between 100-999 and print username and id
+/*
+        PreparedStatement pst= con.prepareStatement("Select id, name from table1 where age>99 and age<1000");
+        ResultSet rs= pst.executeQuery();
+        while (rs.next()){
+            System.out.println(rs.getString("name")+" -> "+ rs.getInt("id"));
+        }
+*/
+
+//------------------------------------------------
+
+        //insert 10 000 000 rows in books table
 /*
         PreparedStatement pst= con.prepareStatement("Insert into books values(?, ?)");
         for(int i=0; i< 10000000; i++){
-            pst.setString(1, "BookName");
+            pst.setString(1, "BookName"+((char)('A'+ (i%25))));
             pst.setDouble(2, (i*10.0));
             pst.addBatch();
         }
         int[] res= pst.executeBatch();
         System.out.println("Inserted 1,00,00,000  rows successfully");
 */
+
+        //read and print all rows of books table
+/*       PreparedStatement pst2= con.prepareStatement("SELECT * FROM books");
+        ResultSet rs= pst2.executeQuery();
+        while (rs.next()){
+            System.out.println(rs.getString("name")+"  ->  "+ rs.getDouble("price"));
+        }
+*/
+
+        //read and print rows of books where book-name ends with 'A'
+/*
+        PreparedStatement pst= con.prepareStatement("SELECT * from books where name like '%A'");
+        ResultSet rs= pst.executeQuery();
+        while (rs.next()){
+            System.out.println(rs.getString("name")+ "  -> "+ rs.getDouble("price"));
+        }
+*/
+
+        //count rows number of rows where book-name ends with 'I'
+/*
+        PreparedStatement pst2= con.prepareStatement("SELECT count(price) as cnt from books where name like '%I'");
+        ResultSet rs2= pst2.executeQuery();
+        while (rs2.next()){
+            System.out.println("Count of book ending with 'I'= "+ rs2.getInt("cnt"));
+        }
+*/
+
 
 
 
